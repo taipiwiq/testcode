@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h1>編集画面</h1>
+    <ul>
+        <h1>問題文を入力</h1>
+    </ul>
+
+    {% if error %}
+        <p style="color:red;">{{ error }}</p>
+    {% endif %}
+    
+    <form method="POST">
+        <ul>
+            <input type="text" name="question" value="{{ post.question }}" value="{{ request.form.get('question', post.question) }}">
+            <h1>解答の選択肢を選択</h1>
+        <li>選択肢１</li><input type="text" name="select1" value="{{ post.select1 }}" value="{{ request.form.get('select1', post.select1) }}">
+        <li>選択肢２</li><input type="text" name="select2" value="{{ post.select2 }}" value="{{ request.form.get('select2', post.select2) }}">
+        <li>選択肢３</li><input type="text" name="select3" value="{{ post.select3 }}" value="{{ request.form.get('select3', post.select3) }}">
+        <li>選択肢４</li><input type="text" name="select4" value="{{ post.select4 }}" value="{{ request.form.get('select4', post.select4) }}">
+        </ul>
+        <ul>
+            <h1>正答を入力</h1>
+            <input type='text' name="answer" value="{{ request.form.get('answer', post.answer) }}">
+            <input type="submit" value="更新">
+        </ul>
+    </form>
+
+{% endblock %}

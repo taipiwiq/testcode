@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>ようこそ{{ user.username }}さん</h2>
+<a href="/really" role="button">ログアウト</a>
+<h1>科目を選択</h1>
+
+{% for genre in genres %}
+<form action="{{ url_for('quiz.unit', genre_id=genre.id) }}" method="get">
+    <button type="submit"><h2>{{ genre.name }}</h2></button>
+</form>
+<br>
+{% endfor %}
+
+<a href="{{ url_for('quiz.history') }}">過去の履歴</a>
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>科目編集</h1>
+
+<form method="POST">
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>単元名</th>
+            <th>削除</th>
+        </tr>
+
+    {% for unit in units %}
+        <tr>
+            <td>{{ unit.id }}</td>
+            <td>
+            <input type="text" name="name_{{ unit.id }}" value="{{ unit.name }}">
+            </td>
+            <td>
+                <form action="{{ url_for('admin.delete_unit', id=unit.id) }}" method="POST" style="display:inline;" onsubmit="return confirm('削除してもよろしいですか？');">
+                    <button type="submit">削除</button>
+                </form>
+            </td>
+        </tr>
+    {% endfor %}
+
+    </table>
+
+<input type="submit" value="保存">
+</form>
+
+<a href="{{ url_for('admin.unit_list', genre_id=genre.id) }}"><button>戻る</button></a>
+
+{% endblock %}

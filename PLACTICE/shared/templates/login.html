@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h1>ログイン画面</h1>
+
+    {% if name_error %}
+        <p>ユーザー名が存在しません</p>
+    {% endif %}
+
+
+    {% if pass_error %}
+        <p>パスワードが違います</p>
+    {% endif %}
+    
+    <form method="POST">
+        <label>ユーザー名</label>
+        <input type="text" name="username">
+        <label>パスワード</label>
+        <input type="password" name="password">
+        <input type="submit" value="ログイン">
+    </form>
+    <p>アカウントをお持ちでない場合は
+        <a href="{{ url_for('auth.signup') }}">サインアップ</a>してください</p>
+
+{% endblock %}

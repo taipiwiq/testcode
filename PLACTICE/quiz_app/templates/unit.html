@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>科目を選んでください</h1>
+
+{% for unit in units %}
+    {% if unit.id in unit_post_map %}
+        <form action="{{ url_for('quiz.quiz', genre_id=genre.id, unit_id=unit.id, post_id=unit_post_map[unit.id]) }}" method="get">
+            <button type="submit"><h2>{{ unit.name }}</h2></button>
+        </form>
+    {% endif %}
+{% endfor %}
+
+{% endblock %}

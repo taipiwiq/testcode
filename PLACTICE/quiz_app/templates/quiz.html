@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>ジャンル: {{ unit.name }} の問題に挑戦</h2>
+<p>【{{ current_number }}/{{ total }}問目】</p>
+
+<form method="POST" action="{{ url_for('quiz.answer', post_id=post.id) }}">
+  <p><strong>問題:</strong> {{ post.question }}</p>
+
+  <label><input type="radio" name="selected" value="{{ post.select1 }}" required> {{ post.select1 }}</label><br>
+  <label><input type="radio" name="selected" value="{{ post.select2 }}"> {{ post.select2 }}</label><br>
+  <label><input type="radio" name="selected" value="{{ post.select3 }}"> {{ post.select3 }}</label><br>
+  <label><input type="radio" name="selected" value="{{ post.select4 }}"> {{ post.select4 }}</label><br>
+
+  <button type="submit">解答する</button>
+</form>
+
+{% endblock %}

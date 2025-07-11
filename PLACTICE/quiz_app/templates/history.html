@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>{{ current_user.username }} さんの解答履歴</h2>
+
+{% if sessions %}
+<table border="1" cellpadding="8" cellspacing="0">
+  <tr>
+    <th>解答日時</th>
+    <th>単元名</th>
+    <th>かかった時間</th>
+    <th>点数</th>
+    <th>間違えた問題数</th>
+  </tr>
+  {% for s in sessions %}
+  <tr>
+    <td>{{ s.started_at.strftime('%Y-%m-%d %H:%M') }}</td>
+    <td>{{ s.unit.name }}</td>
+    <td>
+      {% set seconds = (s.ended_at - s.started_at).seconds %}
+      {{ seconds // 60 }}分 {{ seconds % 60 }}秒
+    </td>
+    <td>
+      {{ s.correct_count }} / {{ s.total_count }}（{{ (s.correct_count / s.total_count * 100)|round(0) }}%）
+    </td>
+    <td>{{ s.total_count - s.correct_count }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<p>まだ履歴がありません。</p>
+{% endif %}
+
+<a href="{{ url_for('quiz.home') }}">ホームへ戻る</a>
+
+{% endblock %}

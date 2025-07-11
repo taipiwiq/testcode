@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>科目一覧</h1>
+
+<a href="/genre_create">
+  <button type="button">科目の追加</button>
+</a>
+
+<a href="/genre/edit">
+  <button type="button">編集</button>
+</a>
+
+<ul>
+  {% for genre in genres %}
+    <li>
+      <a href="/unit/{{ genre.id }}">{{ genre.name }}</a>
+    </li>
+  {% endfor %}
+</ul>
+<a href="home"><button>ホームへ</button></a>
+{% endblock %}

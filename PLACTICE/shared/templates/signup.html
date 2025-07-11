@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>ユーザー登録</h1>
+
+{% if unique_error %}
+    <p>そのユーザー名はすでに登録されています</p>
+{% endif %}
+
+<form method="POST">
+    <label>ユーザー名</label>
+    <input type="text" name="username">
+    <label>パスワード</label>
+    <input type="password" name="password">
+    <input type="submit" value="作成">
+</form>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h1>{{ genre.name }}>{{ unit.name }}の問題一覧</h1>
+
+    <a href="{{ url_for('admin.unit_list', genre_id=genre.id) }}"><div>単元一覧に戻る</div></a>
+    <a href="{{ url_for('admin.home') }}">ホームへ</a>
+    <a href="{{ url_for('admin.create', unit_id=unit.id) }}">問題作成画面</a>
+    
+    {% for post in posts %}
+
+    <article>
+        <h2>{{ post.question }}</h2>
+        <a href="/{{post.id}}/update" role="button">編集</a>
+        <form action="{{ url_for('admin.delete_post', post_id=post.id) }}" method="POST" style="display:inline;" onsubmit="return confirm('削除してもよろしいですか？');">
+            <button type="submit">削除</button>
+        </form>
+        <h3>選択肢</h3>
+            <p>1. {{ post.select1 }}</p>
+            <p>2. {{ post.select2 }}</p>
+            <p>3. {{ post.select3 }}</p>
+            <p>4. {{ post.select4 }}</p>
+        <h3>正答</h3>
+        <p>{{ post.answer }}</p>
+        <p>作成日時: {{ post.created_at }}</p>
+    </article>
+
+    {% endfor %}
+{% endblock %}

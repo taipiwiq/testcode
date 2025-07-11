@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+
+        <h1>問題文を入力</h1>
+
+    {% if error %}
+        <p style="color:red;">{{ error }}</p>
+    {% endif %}
+    
+    <form method="POST" action="{{ url_for('admin.create', unit_id=unit.id) }}">
+        <ul>
+            <input type="text" name="question" value="{{ request.form.get('question', '') }}">
+            <h1>解答の選択肢を入力</h1>
+            <li>選択肢１</li><input type="text" name="select1" value="{{ select1 or '' }}">
+            <li>選択肢２</li><input type="text" name="select2" value="{{ select2 or '' }}">
+            <li>選択肢３</li><input type="text" name="select3" value="{{ select3 or '' }}">
+            <li>選択肢４</li><input type="text" name="select4" value="{{ select4 or '' }}">
+        </ul>
+        <ul>
+            <h1>正答を入力</h1>
+            <input type='text' name="answer" value="{{ request.form.get(answer, '') }}">
+            <input type="submit" value="作成">
+        </ul>
+    </form>
+
+{% endblock %}

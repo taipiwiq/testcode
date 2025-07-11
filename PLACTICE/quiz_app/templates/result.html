@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>{{ current_user.username }} の結果</h2>
+
+<p>解答時間: {{ elapsed.seconds // 60 }}分 {{ elapsed.seconds % 60 }}秒</p>
+<p>正解数: {{ correct }} / {{ total }}</p>
+
+<h3>間違えた問題</h3>
+{% if incorrect_records %}
+  <ul>
+    {% for r in incorrect_records %}
+      <li>
+        <strong>問題:</strong> {{ r.post.question }}<br>
+        <strong>あなたの答え:</strong> {{ r.selected_answer }}<br>
+        <strong>正解:</strong> {{ r.post.answer }}
+      </li>
+      <hr>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>なし</p>
+{% endif %}
+
+<a href="{{ url_for('quiz.history') }}">マイページへ</a>
+<a href="{{ url_for('quiz.home') }}">ホームへ</a>
+
+{% endblock %}

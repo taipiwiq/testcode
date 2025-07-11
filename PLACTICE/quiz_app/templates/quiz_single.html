@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>問題: {{ post.question }}</h2>
+
+<form method="POST" action="{{ url_for('quiz.answer', post_id=post.id) }}">
+    <label><input type="radio" name="selected" value="{{ post.select1 }}" required> {{ post.select1 }}</label><br>
+    <label><input type="radio" name="selected" value="{{ post.select2 }}"> {{ post.select2 }}</label><br>
+    <label><input type="radio" name="selected" value="{{ post.select3 }}"> {{ post.select3 }}</label><br>
+    <label><input type="radio" name="selected" value="{{ post.select4 }}"> {{ post.select4 }}</label><br>
+
+    <button type="submit">
+        {% if next_post_exists %}
+            次へ
+        {% else %}
+            結果へ
+        {% endif %}
+    </button>
+</form>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h2>{{ current_user.username }} さんの解答履歴</h2>
+    <p>正解数: {{ correct }} / {{ total }}</p>
+    <table>
+    <tr>
+        <th>問題</th><th>あなたの答え</th><th>正誤</th><th>日時</th>
+    </tr>
+    {% for r in records %}
+    <tr>
+        <td>{{ r.post.question }}</td>
+        <td>{{ r.selected_answer }}</td>
+        <td>{{ '○' if r.is_correct else '×' }}</td>
+        <td>{{ r.answered_at.strftime('%Y-%m-%d %H:%M') }}</td>
+    </tr>
+    {% endfor %}
+    </table>
+    <a href="home">ホームへ</a>
+
+{% endblock %}

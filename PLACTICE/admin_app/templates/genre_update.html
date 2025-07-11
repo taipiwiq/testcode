@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>科目編集</h1>
+
+<form method="POST">
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>科目名</th>
+      <th>削除</th>
+    </tr>
+
+    {% for genre in genres %}
+    <tr>
+      <td>{{ genre.id }}</td>
+      <td>
+        <input type="text" name="name_{{ genre.id }}" value="{{ genre.name }}">
+      </td>
+      <td>
+        <!-- 削除ボタン用フォーム（POSTで送信） -->
+        <form action="{{ url_for('admin.delete_genre', id=genre.id) }}" method="POST" style="display:inline;" onsubmit="return confirm('削除してもよろしいですか？');">
+          <button type="submit">削除</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+
+  </table>
+
+  <input type="submit" value="保存">
+</form>
+
+<a href="/genre"><button>戻る</button></a>
+
+{% endblock %}
