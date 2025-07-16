@@ -15,6 +15,6 @@ body.login {
   height: 100vh;
 }
 
-.login p{
+.login > p{
   background-color: red;
 }
