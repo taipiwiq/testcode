@@ -3,54 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>{% block title %}ページタイトル{% endblock %}</title>
     <style>
-body {
-  font-family: 'Helvetica Neue', sans-serif;
-  background: #f7f9fc;
-  color: #333;
-  margin: 0;
-  padding: 0;
-}
-header {
-  background: linear-gradient(to right, #dcb7ff, #fff0f6);
-  padding: 1rem 2rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-header h1 {
-  margin: 0;
-  color: #5e338b;
-}
-.container {
-  max-width: 800px;
-  margin: auto;
-  padding: 2rem;
-}
-button, input[type=submit] {
-  background-color: #9d7cbf;
-  color: white;
-  border: none;
-  padding: 0.8rem 1.2rem;
-  margin: 0.5rem 0;
-  border-radius: 8px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-button:hover, input[type=submit]:hover {
-  background-color: #7c5aa0;
-}
-form input[type=text], form input[type=password] {
-  width: 100%;
-  padding: 0.6rem;
-  margin: 0.5rem 0;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-}
-</style>
+        /* --- 共通スタイル --- */
+        body {
+            font-family: 'Helvetica Neue', sans-serif;
+            background-color: #f7f9fc;
+            color: #333;
+            margin: 0;
+            padding: 2rem;
+        }
 
+        a {
+            display: inline-block;
+            background-color: #9d7cbf;
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem 1.2rem;
+            margin: 0.5rem;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #7c5aa0;
+        }
+
+        /* --- ページごとのスタイル切替 --- */
+
+        /* a_app 用ページのカスタム */
+        .page-a a {
+            background-color: #ffd6e7;
+            color: #5e2d5b;
+        }
+        .page-a a:hover {
+            background-color: #f9b5d0;
+        }
+
+        /* b_app 用ページのカスタム */
+        .page-b a {
+            background-color: #d0e1ff;
+            color: #2d3e80;
+        }
+        .page-b a:hover {
+            background-color: #a8c6f0;
+        }
+
+        /* 追加で必要になったら、ここに `.page-x` を追加していけます */
+
+    </style>
 </head>
-<body>
+<body class="{% block body_class %}{% endblock %}">
     {% block content %}
     {% endblock %}
 </body>
