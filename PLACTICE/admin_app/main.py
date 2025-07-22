@@ -142,7 +142,7 @@ def unit_list(genre_id):
     return render_template('unit.html', genre=genre, units=units)
 
 #単元作成画面
-@admin_bp.route('/unit_create/<int:genre_id>', methods=['GET','POST'])
+@admin_bp.route('/unit_create', methods=['GET','POST'])
 @login_required
 @roles_required('admin')
 def unit_create(genre_id):
@@ -150,13 +150,13 @@ def unit_create(genre_id):
         unit_name = request.form.get('name')
         
         if unit_name:
-            new_unit = Unit(name=unit_name, genre_id=genre_id)
+            new_unit = Unit(name=unit_name)
             
             db.session.add(new_unit)
             db.session.commit()
             return redirect('/unit')
     
-    return render_template('unit_create.html', genre_id=genre_id)
+    return render_template('unit_create.html')
 
 #単元編集画面
 @admin_bp.route('/unit/edit/<int:genre_id>', methods=['GET', 'POST'])
