@@ -145,7 +145,7 @@ def unit_list(genre_id):
 @admin_bp.route('/unit_create', methods=['GET','POST'])
 @login_required
 @roles_required('admin')
-def unit_create(genre_id):
+def unit_create():
     if request.method == 'POST':
         unit_name = request.form.get('name')
         
